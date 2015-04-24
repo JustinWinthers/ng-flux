@@ -12,10 +12,24 @@ Victor's article:
 
  todo: auto instantiate stores in app by injecting them in the given module's run blocks
 
- - Justin Winthers
 
 
- #Creating an action to send events to the dispatcher:
+How can I install it?
+============
+1) Get the library:
+
+**Download from Github**
+
+        git clone git@github.com:JustinWinthers/ng-flux.git
+
+
+**Using Bower**
+
+        bower install ng-flux
+
+
+
+#Creating an action to send events to the dispatcher:
 
 ````javascript
 
@@ -34,7 +48,7 @@ Victor's article:
 ````
 
 
- #How to instantiate a store in your Angular module:
+#How to instantiate a store in your Angular module:
 
 ````javascript
 
@@ -64,7 +78,7 @@ Victor's article:
 ````
 
 
- #Accessing the store in a controller, factory, service, or link function:
+#Accessing the store in a controller, factory, service, or link function:
 
 ````javascript
 
@@ -74,7 +88,7 @@ Victor's article:
 
 ````
 
- #Optional component semantics influenced by this blog post:
+#Optional component semantics influenced by this blog post:
  http://blog.ninja-squad.com/2014/12/15/what-is-coming-in-angularjs-1.4/
 
  Writing Small directives as components
