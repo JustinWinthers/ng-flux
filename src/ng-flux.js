@@ -2,6 +2,13 @@
 
  Flux library for your Angular 1.4 apps.
 
+ Heavily influenced by Victor Savkin's great post showing how to use with Angular 2, but no reason
+ we can't use it in our 1.x apps with great success!
+
+ Victor's article:
+ http://victorsavkin.com/post/99998937651/building-angular-apps-using-flux-architecture
+
+
  Strictly follows the FLUX pattern and instantiates only one dispatcher as a Singleton for the application.
 
  todo: auto instantiate stores in app by injecting them in the given module's run blocks
@@ -60,7 +67,7 @@
 
 
 
- Option component semantics influenced by this blog post:
+ Optional component semantics influenced by this blog post:
  http://blog.ninja-squad.com/2014/12/15/what-is-coming-in-angularjs-1.4/
 
  Writing Small directives as components
