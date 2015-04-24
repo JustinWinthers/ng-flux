@@ -33,13 +33,13 @@ How can I install it?
 
 ````javascript
 
-     .action('individualActions', function(dispatcher){
+     .action('itemActions', function(dispatcher){
 
          return {
-            individual: function(individual){
+            addItems: function(items){
                 dispatcher.emit({
-                    actionType: 'ADD_INDIVIDUAL',
-                    individual:individual
+                    actionType: 'ADD_ITEMS',
+                    items:items
                 })
             }
          }
@@ -63,7 +63,7 @@ How can I install it?
                 _store.init();
                 _store.emitChange();
                 break;
-            case 'ADD_ITEM':
+            case 'ADD_ITEMS':
                 _store.data = action.items;
                 _store.emitChange();
                 break;
@@ -83,7 +83,7 @@ How can I install it?
 ````javascript
 
      itemStore.register(function(){
-        $scope.items = individualStore.items();
+        $scope.items = itemStore.items();
      });
 
 ````
