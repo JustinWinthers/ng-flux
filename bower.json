@@ -1,0 +1,22 @@
+{
+  "name": "ng-flux",
+  "version": "0.0.0",
+  "homepage": "https://github.com/JustinWinthers/ng-flux",
+  "authors": [
+    "Justin Winthers <justin@digitaladvisors.io>"
+  ],
+  "description": "Flux library for your 1.4 apps",
+  "main": "src/ng-flux.js",
+  "keywords": [
+    "Flux",
+    "angular"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
