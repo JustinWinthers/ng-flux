@@ -10,7 +10,7 @@
 
  Strictly follows the FLUX pattern and instantiates only one dispatcher as a Singleton for the application.
 
-- Justin Winthers
+ - Justin Winthers
 
  */
 
@@ -20,14 +20,14 @@
         ,storeInstances = []
 
         ,EventEmitter = function(prefix){
-            this._prefix = prefix || 'dispatch';
+            this._prefix = prefix + 'Callback' || 'dispatchCallback';
             this._id = 0;
             this._callbacks = {};
         }
 
-        ,Store = function(){
+        ,Store = function(prefix){
             this._id = 0;
-            this._prefix = 'store';
+            this._prefix = prefix + 'Callback' || 'storeCallback';
             this._callbacks={};
             this.data={};
         }
@@ -68,8 +68,8 @@
 
     Store.prototype = EventEmitter.prototype;
 
-    Store.prototype.emitChange = function(){
-        this.emit("change")
+    Store.prototype.emitChange = function(e){
+        this.emit(e || "change")
     };
 
     Store.prototype.init = function(){
@@ -86,7 +86,6 @@
         ngModuleFn.factory('depends',function($injector){
             //ensure instantiation of data persistence stores in app
             return function(dependency){
-
                 try {
                     $injector.get(dependency, null);
                 }
@@ -121,7 +120,7 @@
             }
 
             if (newInstance) {
-                _store = new Store;
+                _store = new Store(key);
                 storeInstances.push({key:key,instance:_store});
             }
 
