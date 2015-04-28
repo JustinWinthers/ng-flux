@@ -29,9 +29,11 @@ How can I install it?
 
 
 
-#Creating an action to send events to the dispatcher:
+#Creating an action to send events to the dispatcher in your Angular module:
 
 ````javascript
+
+  angular.module('myModule',['myDependency'])
 
      .action('itemActions', function(dispatcher){
 
@@ -43,7 +45,7 @@ How can I install it?
                 })
             }
          }
-     })
+     });
 
 ````
 
@@ -51,6 +53,8 @@ How can I install it?
 #How to instantiate a store in your Angular module:
 
 ````javascript
+
+angular.module('myModule',['myDependency'])
 
      .store('itemStore',function(dispatcher){
 
@@ -74,7 +78,7 @@ How can I install it?
             register:function(fn){_store.register(fn)},
             items:function(){return _store.data}
          }
-     })
+     });
 ````
 
 
@@ -82,9 +86,12 @@ How can I install it?
 
 ````javascript
 
+ .controller('menuController',['$scope','itemsStore', function($scope, itemsStore){
+
      itemStore.register(function(){
         $scope.items = itemStore.items();
      });
+]);
 
 ````
 
@@ -97,7 +104,9 @@ How can I install it?
 
  ````javascript
 
-    app.component ('component', template, scope, controller);
+  angular.module('myModule',['myDependency'])
+
+    .component ('component', template, scope, controller);
 
 ````
 
@@ -113,5 +122,3 @@ How can I install it?
          };
      });
  ````
-
- */
