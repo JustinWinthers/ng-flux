@@ -27,7 +27,20 @@ How can I install it?
 
         bower install ng-flux
 
+Just include the library in your html after angular but before your application js.
+You don't need to declare a dependency for ng-flux in your module since it decorates
+angular.module with semantics you can use in your angular module component declarations like
+.store, .action, and .component.
 
+The Dispatcher is auto instantiated for you as a singleton and must be provided as a dependency
+in your store and action components.
+
+One issue that arises due to how Angular instantiates is that for persistent stores, you should instantiate all of
+your stores at app startup otherwise you run the risk of having data not persist to a store if it
+has not been instantiated by a factory, controller, etc... that has yet to be executed.
+
+The next version will auto inject the stores in the module run blocks via the injector so that you don't have to worry about, but
+for now the best practice is to include your stores as dependencies in your modules .run
 
 #Creating an action to send events to the dispatcher in your Angular module:
 
