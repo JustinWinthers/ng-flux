@@ -29,7 +29,7 @@ How can I install it?
 
 Just include the library in your html after angular but before your application js.
 You don't need to declare a dependency for ng-flux in your module since it decorates
-angular.module with semantics you can use in your angular module component declarations like
+angular.module with semantics you can use in your Angular module component declarations like
 .store, .action, and .component.
 
 The Dispatcher is auto instantiated for you as a singleton and must be provided as a dependency
