@@ -62,6 +62,25 @@ for now the best practice is to include your stores as dependencies in your modu
 
 ````
 
+and then setting that action on any event in your application like so...
+
+````javascript
+
+        .directive('myClickDirective', function(itemsAction){
+            return {
+                restrict: 'A',
+                scope:{items:"="},
+                link:function(scope, elem, attrs){
+                    elem.on('click',function(e){
+                        itemsAction.addItems(scope.items);
+                    })
+                    }
+                }
+            }
+        })
+
+````
+
 
 #How to instantiate a store in your Angular module:
 
