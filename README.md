@@ -27,7 +27,12 @@ How can I install it?
 
         bower install ng-flux
 
-Just include the library in your html after angular but before your application js.
+
+**Using npm**
+
+        npm install ng-flux
+
+Just include the library in your html after Angular but before your application js.
 You don't need to declare a dependency for ng-flux in your module since it decorates
 angular.module with semantics you can use in your Angular module component declarations like
 .store, .action, and .component.
