@@ -1,0 +1,27 @@
+{
+  "name": "ng-flux",
+  "email": "justin@digitaladvisors.io",
+  "version": "1.0.0",
+  "description": "Flux library for your 1.4 apps",
+  "main": "src/ng-flux.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JustinWinthers/ng-flux.git"
+  },
+  "keywords": [
+    "flux",
+    "Angular",
+    "ng-flux",
+    "flux",
+    "architecture"
+  ],
+  "author": "Justin Winthers - Digital Advisors, LLC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JustinWinthers/ng-flux/issues"
+  },
+  "homepage": "https://github.com/JustinWinthers/ng-flux"
+}
