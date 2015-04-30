@@ -10,7 +10,14 @@ Victor's article:
 
  Strictly follows the FLUX pattern and instantiates only one dispatcher as a Singleton for the application.
 
- todo: auto instantiate stores in app by injecting them in the given module's run blocks
+ Updates in the latest version 1.01:
+
+   * Auto instantiation of stores in app by injecting them in the given module's run blocks.
+     This ensures all stores will be present and able to receive data at app startup.
+
+   * Functions registered with a store will auto manage digest cycles and updates to the dom by establishing
+     a watcher on the stores .data object.  For this to work, you should store all data in your stores .data
+     object and you won't have to worry about asynchronous updates not being bound to the view.
 
 
 
@@ -42,7 +49,8 @@ in your store and action components.
 
 One issue that arises due to how Angular instantiates is that for persistent stores, you should instantiate all of
 your stores at app startup otherwise you run the risk of having data not persist to a store if it
-has not been instantiated by a factory, controller, etc... that has yet to be executed.
+has not been instantiated by a factory, controller, etc... that has yet to be executed.  Version 1.01 and above
+now auto intantiate stores so that you don't have to worry about it.
 
 The next version will auto inject the stores in the module run blocks via the injector so that you don't have to worry about, but
 for now the best practice is to include your stores as dependencies in your modules .run

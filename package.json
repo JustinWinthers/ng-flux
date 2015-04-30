@@ -1,7 +1,7 @@
 {
   "name": "ng-flux",
   "email": "justin@digitaladvisors.io",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Flux library for your 1.4 apps",
   "main": "src/ng-flux.js",
   "scripts": {

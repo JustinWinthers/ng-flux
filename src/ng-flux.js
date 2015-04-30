@@ -34,7 +34,6 @@
 
         ,dispatcher;
 
-
     EventEmitter.prototype = {
         emit: function(event) {
 
@@ -44,6 +43,7 @@
                 }
             }
         },
+
         register: function(listener) {
 
             var register = true;
@@ -66,25 +66,43 @@
         }
     };
 
-    Store.prototype = EventEmitter.prototype;
+    Store.prototype.emit = EventEmitter.prototype.emit;
 
     Store.prototype.emitChange = function(e){
-        this.emit(e || "change")
+
+        this.emit(e || "change");
+
+        setTimeout(function(){angular.element('body').scope().$digest()},0);
     };
 
     Store.prototype.init = function(){
         this.data = {};
     };
 
-    dispatcher = new EventEmitter('dispatcherSingleton');
+    Store.prototype.register = function(fn){
 
+        var _store = this;
+
+        angular.element('body').scope().$watch(function(){
+                return _store.data;
+            },
+            function(newVal, oldVal){
+                if (newVal !== oldVal) fn();
+            }
+        );
+
+    };
+
+    dispatcher = new EventEmitter('dispatcherSingleton');
 
     angular.module = function () {
 
         var ngModuleFn = ngModule.apply(angular, arguments);
 
         ngModuleFn.factory('depends',function($injector){
+
             //ensure instantiation of data persistence stores in app
+
             return function(dependency){
                 try {
                     $injector.get(dependency, null);
@@ -98,7 +116,6 @@
         ngModuleFn.factory('dispatcher',function(){
             return dispatcher;
         });
-
 
         ngModuleFn.action = function(key, factory){
             this.factory(key, factory);
@@ -127,6 +144,10 @@
             this.factory(key, function(){
                 return angular.injector([name]).invoke(factory, _store);
             });
+
+            //auto instantiate store at next tick
+
+            setTimeout(function(){angular.injector([name]).invoke(factory, _store)},0);
 
             return this;
         };
