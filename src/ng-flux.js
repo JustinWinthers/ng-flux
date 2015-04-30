@@ -19,6 +19,8 @@
 
         ,storeInstances = []
 
+        ,$$watchPhase = 0
+
         ,EventEmitter = function(prefix){
             this._prefix = prefix + 'Callback' || 'dispatchCallback';
             this._id = 0;
@@ -71,6 +73,7 @@
     Store.prototype.emitChange = function(e){
 
         this.emit(e || "change");
+        this.data.$$watchPhase = $$watchPhase++;
 
         setTimeout(function(){angular.element('body').scope().$digest()},0);
     };
@@ -84,7 +87,7 @@
         var _store = this;
 
         angular.element('body').scope().$watch(function(){
-                return _store.data;
+                return _store.data.$$watchPhase;
             },
             function(newVal, oldVal){
                 if (newVal !== oldVal) fn();
