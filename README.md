@@ -16,7 +16,7 @@ Victor's article:
      This ensures all stores will be present and able to receive data at app startup.
 
    * Functions registered with a store will auto manage digest cycles and updates to the dom by establishing
-     a watcher on the stores .data object.  For this to work, you should store all data in your stores .data
+     a watcher on the given store's .data object.  For this to work, you should store it's data in the store's .data
      object and you won't have to worry about asynchronous updates not being bound to the view.
 
 
@@ -129,9 +129,15 @@ angular.module('myModule',['myDependency'])
 
 #Accessing the store in a controller, factory, service, or link function:
 
+If the store is updated after a controller has executed, but is still present in the current view, the
+register function will auto manage digest cycles when stores are updated and establish a watcher that will
+bind the data to the view.  No need to clutter your code with $scope.$apply().
+
 ````javascript
 
  .controller('menuController',['$scope','itemsStore', function($scope, itemsStore){
+
+     $scope.items = itemStore.items();
 
      itemStore.register(function(){
         $scope.items = itemStore.items();
