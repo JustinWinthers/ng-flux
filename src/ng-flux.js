@@ -142,12 +142,12 @@
             }
 
             this.factory(key, function(){
-                return angular.injector([name]).invoke(factory, _store);
+                return instantiateStore();
             });
 
-            //auto instantiate store at next tick
+            setTimeout(instantiateStore,0);  // immediately invoke store for app startup
 
-            setTimeout(function(){angular.injector([name]).invoke(factory, _store)},0);
+            function instantiateStore(){return angular.injector([name]).invoke(factory, _store)}
 
             return this;
         };
