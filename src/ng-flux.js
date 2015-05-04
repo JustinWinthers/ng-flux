@@ -98,27 +98,16 @@
 
     dispatcher = new EventEmitter('dispatcherSingleton');
 
+    angular.module('ng-flux',[])
+        .factory('dispatcher',function(){
+            return dispatcher;
+        });
+
     angular.module = function () {
 
         var ngModuleFn = ngModule.apply(angular, arguments);
 
-        ngModuleFn.factory('depends',function($injector){
-
-            //ensure instantiation of data persistence stores in app
-
-            return function(dependency){
-                try {
-                    $injector.get(dependency, null);
-                }
-                catch (e) {
-                    console.log ('caught circular dependency for', dependency);
-                }
-            }
-        });
-
-        ngModuleFn.factory('dispatcher',function(){
-            return dispatcher;
-        });
+        ngModuleFn.requires.push('ng-flux');
 
         ngModuleFn.action = function(key, factory){
             this.factory(key, factory);
@@ -173,5 +162,6 @@
 
         return ngModuleFn;
     };
+
 
 })();
